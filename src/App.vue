@@ -1,15 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <table width="100%">
+    <tr valign="top">
+      <td width="25%" align="left"><Stats/></td>
+      <td width="5%"></td>
+      <td align="left"><FileBrowser/></td>
+    </tr>
+  </table>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Stats from './components/Stats.vue'
+import FileBrowser from './components/FileBrowswer.vue'
 
 export default {
-  name: 'App',
+  name: 'GraphFS-UI',
   components: {
-    HelloWorld
+    Stats,
+    FileBrowser
   }
 }
 </script>
