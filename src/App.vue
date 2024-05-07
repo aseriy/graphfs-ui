@@ -10,10 +10,10 @@
 
 <script>
 import Stats from './components/Stats.vue'
-import FileBrowser from './components/FileBrowswer.vue'
+import FileBrowser from './components/FileBrowser.vue'
 
 export default {
-  name: 'GraphFS-UI',
+  name: 'GraphFS',
   components: {
     Stats,
     FileBrowser
