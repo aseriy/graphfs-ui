@@ -11,9 +11,9 @@
   </table>
 
   <table width="100%">
-    <tr><td colspan="2">Identical Files:</td></tr>
+    <tr><td colspan="2">Identical Files ({{ data.identical?.length }}):</td></tr>
     <tr v-for="(ident, key) in data.identical" :key='key'>
-      <td>{{ key }}</td>
+      <td>{{ key+1 }}</td>
       <td @click="$parent.updatePath(ident)">{{ ident }}</td>
     </tr>
   </table>

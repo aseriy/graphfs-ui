@@ -2,11 +2,12 @@
   <h1>FILE BROWSER</h1>
   <table width="100%">
     <tr>
-      <td colspan="2">Path: {{ data.path }}</td>
-    </tr>
-    <tr>
-      <td @click="updatePath('/')">Root</td>
-      <td @click="updatePath(data.directory)">Parent directory</td>
+      <td colspan="2">Path:
+        <ul v-for="(dir, key) in data.pathLinks" :key='key'>
+        <li @click="updatePath(pathDelinkify(key))">
+          {{ dir }}
+        </li>
+      </ul></td>
     </tr>
     <tr>
       <td colspan="2">
@@ -57,18 +58,47 @@ export default {
     },
 
     async updatePath(path) {
-      if (path === '/') {
-        path = null
+      if (this.data.path !== 'undefined' && this.data.path !== path) {
+        if (path === '/') {
+          path = null
+        }
+        this.data = await this.getPath(path)
+        this.data.pathLinks = this.pathLinkify(this.data.path)
+        console.log("FileBrowser / updatePath(): ", this.data)
+        this.viewType = fsNodeViewerMap[this.data.type]
       }
-      this.data = await this.getPath(path)
-      console.log("FileBrowser / updatePath(): ", this.data)
-      this.viewType = fsNodeViewerMap[this.data.type]
+    },
+
+    pathLinkify(path) {
+      var pathLinks = ['ROOT']
+
+      if (path != '/') {
+        var links = path.split('/')
+        links.shift()
+        pathLinks = pathLinks.concat(links)
+      }
+
+      return pathLinks
+    },
+
+    pathDelinkify(idx) {
+      var path = '/'
+
+      if (idx > 0) {
+        var pathLinks = this.data.pathLinks.slice(0)
+        pathLinks[0] = ''
+        pathLinks.splice(idx+1)
+        path = pathLinks.join('/')
+      }
+
+      return path
     }
 
   },
 
   async created() {
     this.data = await this.getPath()
+    this.data.pathLinks = this.pathLinkify(this.data.path)
     console.log("FileBrowser / created(): ", this.data)
     this.viewType = fsNodeViewerMap[this.data.type]
   }
@@ -83,12 +113,15 @@ h3 {
   margin: 40px 0 0;
 }
 ul {
-  list-style-type: none;
   padding: 0;
+  list-style-type: '/';
+}
+ul:first-child {
+  list-style: none
 }
 li {
-  display: inline-block;
-  margin: 0 10px;
+  margin: 0 2px;
+  float: left;
 }
 a {
   color: #42b983;
