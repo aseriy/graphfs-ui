@@ -13,23 +13,30 @@
   <table width="100%">
     <tr>
       <td width="50%">Identical Files ({{ data.identical?.length }})</td>
-      <td width="50%">Similar Files ({{ data.similar?.length }})</td>
+      <td width="50%">Similar Files ({{ data.similar?.size }} in {{ data.similar?.nodes.length }} groups)</td>
     </tr>
   </table>
 
   <table width="100%">
     <tr><td colspan="2">Identical Files ({{ data.identical?.length }}):</td></tr>
-    <tr v-for="(ident, key) in data.identical" :key='key'>
-      <td>{{ key+1 }}</td>
+    <tr v-for="(ident, i) in data.identical" :key='i'>
+      <td>{{ i+1 }}</td>
       <td @click="updatePath(ident)">{{ ident }}</td>
     </tr>
   </table>
 
   <table width="100%">
-    <tr><td colspan="2">Similar Files ({{ data.similar?.length }}):</td></tr>
-    <tr v-for="(similar, key) in data.similar" :key='key'>
-      <td>{{ key+1 }}</td>
-      <td @click="updatePath(similar)">{{ similar }}</td>
+    <tr><td colspan="2">Similar Files ({{ data.similar?.size }} in {{ data.similar?.nodes.length }} groups):</td></tr>
+    <tr v-for="(node, i) in data.similar?.nodes" :key='i'>
+      <td>{{ i+1 }}</td>
+      <td>
+        <table width="100%">
+          <tr v-for="(similar, j) in data.similar?.groups[node]" :key='j'>
+            <td>{{ j+1 }}</td>
+            <td @click="updatePath(similar)">{{ similar }}</td>
+          </tr>
+        </table>
+      </td>
     </tr>
   </table>
 
@@ -61,7 +68,18 @@ export default {
 
     async getSimilarFiles(path) { 
       const res = await fetch('/apis/similar' + path)
-      const data = await res.json()
+      const groups = await res.json()
+
+      var size = 0
+      Object.keys(groups).forEach( (grp) => {
+        size += groups[grp].length
+      })
+
+      const data = {
+        nodes: Object.keys(groups),
+        groups: groups,
+        size: size
+      }
       return data
     }
 
@@ -94,5 +112,6 @@ a {
 }
 table, th, td {
   text-align: left;
+  vertical-align: top;
 }
 </style>
