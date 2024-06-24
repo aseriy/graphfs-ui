@@ -2,7 +2,12 @@
   <h1>FILE BROWSER</h1>
   <table width="100%">
     <tr>
-      <td colspan="2">Path:
+      <td colspan="2">
+        Path: {{ data.path }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
         <ul v-for="(dir, key) in data.pathLinks" :key='key'>
         <li @click="updatePath(pathDelinkify(key))">
           {{ dir }}

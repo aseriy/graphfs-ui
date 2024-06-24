@@ -4,11 +4,12 @@
     <tr>
       <td width="15%">Type</td>
       <td>Name</td>
+      <td>Size</td>
     </tr>
     <tr v-for="(child, key) in $parent.data.children" :key='key'>
       <td>{{child.type}}</td>
       <td align="right" @click="$parent.updatePath($parent.data.path + '/' + child.basename)">{{child.basename}}</td>
-      <td></td>
+      <td>{{ child.size }}</td>
     </tr>
   </table>
 </template>
