@@ -1,26 +1,36 @@
 <template>
-  <h1>FILE BROWSER</h1>
-  <table width="100%">
-    <tr>
-      <td colspan="2">
-        Path: {{ data.path }}
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <ul v-for="(dir, key) in data.pathLinks" :key='key'>
-        <li @click="updatePath(pathDelinkify(key))">
-          {{ dir }}
-        </li>
-      </ul></td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <component :is="viewType"></component>
-      </td>
-    </tr>
 
-</table>
+
+  <h2 class="title title--orange">File browser</h2>
+
+  <div class="browser__inner">
+
+    <div class="browser__path">
+      <span class="browser__path-text">
+        Path: {{ data.path }}
+      </span>
+    </div>
+
+    <div class="breadcrumbs">
+      <ul class="breadcrumbs__list">
+        <li class="breadcrumbs__item" v-for="(dir, key) in data.pathLinks" :key='key'>
+          <button type="button" class="breadcrumbs__button" @click="updatePath(pathDelinkify(key))">
+            {{ dir }}
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="browser__content">
+      <component :is="viewType"></component>
+    </div>
+
+
+
+  </div>
+
+
+
 </template>
 
 <script>
@@ -29,8 +39,8 @@ import DirectoryListing from './DirectoryListing.vue'
 import FileViewer from './FileViewer.vue'
 
 const fsNodeViewerMap = {
-  Directory:  "DirectoryListing",
-  File:       "FileViewer"
+  Directory: "DirectoryListing",
+  File: "FileViewer"
 }
 
 export default {
@@ -92,7 +102,7 @@ export default {
       if (idx > 0) {
         var pathLinks = this.data.pathLinks.slice(0)
         pathLinks[0] = ''
-        pathLinks.splice(idx+1)
+        pathLinks.splice(idx + 1)
         path = pathLinks.join('/')
       }
 
@@ -114,24 +124,66 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.browser__path {
+  padding: 5px 15px;
+  border: 1px solid #9a9a9a;
+  border-radius: 4px;
+  margin-bottom: 30px;
 }
-ul {
-  padding: 0;
-  list-style-type: '/';
+
+.breadcrumbs {
+  margin-bottom: 30px;
 }
-ul:first-child {
-  list-style: none
+
+.breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
-li {
-  margin: 0 2px;
-  float: left;
+
+.breadcrumbs__button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  padding: 5px 8px;
+  box-shadow: 2px 2px 4px #9a9a9a,
+  -2px -2px 4px #ffffff;
+  transition: box-shadow 0.3s, color 0.3s;
 }
-a {
-  color: #42b983;
+
+.breadcrumbs__item:not(:last-child) .breadcrumbs__button:after {
+  content: '>';
+  display: inline-block;
 }
-table, th, td {
-  text-align: left;
+
+.breadcrumbs__item:last-child .breadcrumbs__button {
+  pointer-events: none;
+  box-shadow: none;
+  color: #D05A00;
+  position: relative;
+}
+
+
+
+
+.breadcrumbs__item:first-child .breadcrumbs__button {
+  pointer-events: all;
+  box-shadow: 2px 2px 4px #9a9a9a,
+  -2px -2px 4px #ffffff;
+}
+.breadcrumbs__item:first-child .breadcrumbs__button:after {
+  content: '>';
+  display: inline-block;
+}
+
+
+.breadcrumbs__button:hover {
+    color: #D05A00;
+}
+
+.breadcrumbs__button:active {
+  box-shadow: inset 2px 2px 4px #9a9a9a,
+    inset -2px -2px 4px #ffffff;
 }
 </style>

@@ -1,41 +1,58 @@
 <template>
-  <div class="stats">
-      <h1>FILE SYSTEM</h1>
-      <table width="100%">
-        <tr>
-          <td width="60%">Directories</td><td>{{ stats.fs?.directories }}</td>
-        </tr>
-        <tr>
-          <td>Files</td><td>{{  stats.fs?.files }}</td>
-        </tr>
-        <tr>
-          <td>File Nodes</td><td>{{ stats.fs?.filenodes }}</td>
-        </tr>
-        <tr>
-          <td>Size</td><td>{{ stats.fs?.size }}</td>
-        </tr>
-        <tr>
-          <td>Redundancy</td><td>{{ stats.fs?.redundancy }}</td>
-        </tr>
-      </table>
-      <h1>DATA STORE</h1>
-      <table width="100%">
-        <tr>
-          <td width="60%">Containers</td><td>{{ stats.store?.containers }}</td>
-        </tr>
-        <tr>
-          <td>Searched for Similarities</td><td>{{  stats.store?.simsearched }}</td>
-        </tr>
-        <tr>
-          <td>Similarity Search Progress (%)</td><td>{{  stats.store?.simsearch_progress }}</td>
-        </tr>
-        <tr>
-          <td>Similar</td><td>{{ stats.store?.similar }}</td>
-        </tr>
-        <tr>
-          <td>Similarity (%)</td><td>{{ stats.store?.similarity }}</td>
-        </tr>
-      </table>
+  <div class="stats panel__inner">
+    <div class="panel__item shadow-box">
+      <h2 class="title title--blue">File system</h2>
+
+      <ul class="panel__list">
+        <li class="panel__list-item">
+          <span class="panel__list-caption">Directories:</span>
+          <span class="panel__value">{{ stats.fs?.directories }}</span>
+        </li>
+        <li class="panel__list-item">
+          <span class="panel__list-caption">Files:</span>
+          <span class="panel__value">{{ stats.fs?.files }}</span>
+        </li>
+        <li class="panel__list-item">
+          <span class="panel__list-caption">File Nodes:</span>
+          <span class="panel__value">{{ stats.fs?.filenodes }}</span>
+        </li>
+        <li class="panel__list-item">
+          <span class="panel__list-caption">Size:</span>
+          <span class="panel__value">{{ stats.fs?.size }}</span>
+        </li>
+        <li class="panel__list-item">
+          <span class="panel__list-caption">Redundancy:</span>
+          <span class="panel__value">{{ stats.fs?.redundancy }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="panel__item shadow-box">
+      <h2 class="title title--green">Data store</h2>
+
+      <ul class="panel__list">
+        <li class="panel__list-item">
+          <span class="panel__list-caption">Containers:</span>
+          <span class="panel__value">{{ stats.store?.containers }}</span>
+        </li>
+        <li class="panel__list-item">
+          <span class="panel__list-caption">Searched for Similarities:</span>
+          <span class="panel__value">{{ stats.store?.simsearched }}</span>
+        </li>
+        <li class="panel__list-item">
+          <span class="panel__list-caption">Similarity Search Progress (%):</span>
+          <span class="panel__value">{{ stats.store?.simsearch_progress }}</span>
+        </li>
+        <li class="panel__list-item">
+          <span class="panel__list-caption">Similar:</span>
+          <span class="panel__value">{{ stats.store?.similar }}</span>
+        </li>
+        <li class="panel__list-item">
+          <span class="panel__list-caption">Similarity (%):</span>
+          <span class="panel__value">{{ stats.store?.similarity }}</span>
+        </li>
+      </ul>
+    </div>
+
   </div>
 </template>
 
@@ -87,21 +104,35 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+
+.panel__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.panel__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.panel__list-item {
+  display: flex;
+  gap: 10px;
 }
-a {
-  color: #42b983;
-}
-table, th, td {
+
+.panel__list-caption {
+  width: 60%;
+  color: #707070;
   text-align: right;
 }
+
+.panel__value {
+  color: #000000;
+  font-weight: 700;
+  text-align: right;
+  flex-grow: 1;
+}
+
 </style>
