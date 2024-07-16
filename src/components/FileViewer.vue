@@ -1,31 +1,39 @@
 <template>
-  <table width="100%">
-    <tr>
-      <td>Name:</td>
-      <td>{{ $parent.data.basename }}</td>
-      <td>Size:</td>
-      <td>{{ $parent.data.size }}</td>
-      <td>MIME Type:</td>
-      <td>{{ $parent.data.mime }}</td>
-    </tr>
-  </table>
 
-  <table width="100%">
+
+  <div class="file-info">
+    <div class="file-info__item">
+      <span class="file-info__label">Name:</span>
+      <span class="file-info__value">{{ $parent.data.basename }}</span>
+    </div>
+    <div class="file-info__item">
+      <span class="file-info__label">Size:</span>
+      <span class="file-info__value">{{ $parent.data.size }}</span>
+    </div>
+    <div class="file-info__item">
+      <span class="file-info__label">MIME Type:</span>
+      <span class="file-info__value">{{ $parent.data.mime }}</span>
+    </div>
+  </div>
+
+  <div width="100%">
     <tr>
       <td width="50%">Identical Files ({{ data.identical?.length }})</td>
       <td width="50%">Similar Files ({{ data.similar?.size }} in {{ data.similar?.nodes.length }} groups)</td>
     </tr>
-  </table>
+  </div>
 
-  <table width="100%">
-    <tr><td colspan="2">Identical Files ({{ data.identical?.length }}):</td></tr>
+  <div width="100%">
+    <tr>
+      <td colspan="2">Identical Files ({{ data.identical?.length }}):</td>
+    </tr>
     <tr v-for="(ident, i) in data.identical" :key='i'>
       <td>{{ i+1 }}</td>
       <td @click="updatePath(ident)">{{ ident }}</td>
     </tr>
-  </table>
+  </div>
 
-  <table width="100%">
+  <div width="100%">
     <tr><td colspan="2">Similar Files ({{ data.similar?.size }} in {{ data.similar?.nodes.length }} groups):</td></tr>
     <tr v-for="(node, i) in data.similar?.nodes" :key='i'>
       <td>{{ i+1 }}</td>
@@ -38,7 +46,7 @@
         </table>
       </td>
     </tr>
-  </table>
+  </div>
 
 </template>
 
@@ -96,22 +104,26 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+
+.file-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 15px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.file-info__item {
+  width: 28%;
+  border: 1px solid #707070;
+  border-radius: 4px;
+  padding: 2px 8px;
 }
-li {
+
+.file-info__label {
+  font-weight: 700;
   display: inline-block;
-  margin: 0 10px;
+  margin-right: 5px;
+
 }
-a {
-  color: #42b983;
-}
-table, th, td {
-  text-align: left;
-  vertical-align: top;
-}
+
 </style>

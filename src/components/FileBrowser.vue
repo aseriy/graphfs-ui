@@ -132,7 +132,7 @@ export default {
 }
 
 .breadcrumbs {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .breadcrumbs__list {
