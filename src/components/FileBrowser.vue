@@ -1,8 +1,4 @@
 <template>
-
-
-  <h2 class="title title--orange">File browser</h2>
-
   <div class="browser__inner">
 
     <div class="browser__path">
@@ -128,11 +124,11 @@ export default {
   padding: 5px 15px;
   border: 1px solid #9a9a9a;
   border-radius: 4px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .breadcrumbs {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
 .breadcrumbs__list {

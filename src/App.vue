@@ -30,7 +30,9 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap');
 
 html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, a, address, cite, img, ol, ul, li, fieldset, form, label, legend, article, aside, footer, header, menu, nav, section {
 	margin: 0;
@@ -92,9 +94,14 @@ button {
     clip: rect(0 0 0 0);
     overflow: hidden;
 }
+.none {
+  display: none!important;
+}
 
 #app {
-  font-family: "Jura", Arial, sans-serif;
+  font-family: "Cousine", monospace;
+  /* font-family: "Red Hat Mono", monospace; */
+  font-family: "Sometype Mono", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #4A4A4A;
@@ -158,8 +165,12 @@ button {
 .title--green:before {
   background: linear-gradient(90deg, rgba(192,242,152,1) 0%, rgba(99,166,52,1) 100%);
 }
-.title--orange:before {
-  background: linear-gradient(90deg, rgba(252,180,93,1) 0%, rgba(198,86,12,1) 100%);
+
+.ruller {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: tomato;
 }
 
 </style>
