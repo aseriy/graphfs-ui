@@ -23,19 +23,21 @@
       <button ref="identicalButton" class="file-analysis__button identical-button" type="button" @click="toggleActive('identical')">
         <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="Arrow / Chevron_Right">
-            <path id="Vector" d="M9 5L16 12L9 19" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path id="Vector" d="M9 5L16 12L9 19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </g>
         </svg>
         Identical Files ({{ data.identical?.length }}):
       </button>
 
       <div ref="identicalBody" class="file-analysis__body identical-body">
-        <div v-for="(ident, i) in data.identical" :key='i'>
-          <span>
-            {{ i + 1 }}
-          </span>
-          <span @click="updatePath(ident)">{{ ident }}</span>
-        </div>
+        <ul class="identical-body__list">
+          <li class="identical-body__item" v-for="(ident, i) in data.identical" :key='i'>
+            <span class="file-analysis__num">
+              {{ i + 1 }}
+            </span>
+            <span class="file-analysis__path" @click="updatePath(ident)">{{ ident }}</span>
+          </li>
+        </ul>
       </div>
 
 
@@ -45,24 +47,32 @@
       <button ref="similarButton" class="file-analysis__button similar-button" type="button" @click="toggleActive('similar')">
         <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="Arrow / Chevron_Right">
-            <path id="Vector" d="M9 5L16 12L9 19" stroke="#4A4A4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path id="Vector" d="M9 5L16 12L9 19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </g>
         </svg>
         Similar Files ({{ data.similar?.size }} in {{ data.similar?.nodes.length }} groups):
       </button>
 
       <div ref="similarBody" class="file-analysis__body similar-body">
-        <div v-for="(node, i) in data.similar?.nodes" :key='i'>
-          <span>{{ i + 1 }}</span>
-          <span>
-            <table width="100%">
-              <tr v-for="(similar, j) in data.similar?.groups[node]" :key='j'>
-                <td>{{ j + 1 }}</td>
-                <td @click="updatePath(similar)">{{ similar }}</td>
-              </tr>
-            </table>
+
+        <div class="similar-body__group" v-for="(node, i) in data.similar?.nodes" :key='i'>
+          <span class="similar-body__title">
+            {{ i + 1 }}
+            group
           </span>
+
+          <ul class="similar-body__list">
+            <li class="similar-body__item" v-for="(similar, j) in data.similar?.groups[node]" :key='j'>
+              <span class="file-analysis__num">
+                {{ j + 1 }}
+              </span>
+              <span class="file-analysis__path" @click="updatePath(similar)">{{ similar }}</span>
+            </li>
+          </ul>
         </div>
+
+
+
       </div>
 
     </div>
@@ -187,8 +197,7 @@ export default {
 
 .file-info__item {
   width: 28%;
-  border: 1px solid #707070;
-  border-radius: 4px;
+  border-left: 2px solid #6eaf40;
   padding: 2px 8px;
 }
 
@@ -212,10 +221,26 @@ export default {
   width: 100%;
   border-radius: 8px;
   border: 1px solid #4A4A4A;
+  transition: border-color 0.3s, opacity 0.3s;
+}
+
+.file-analysis__button:hover,
+.file-analysis__button:focus {
+  border-color: #6eaf40;
+}
+
+.file-analysis__button:hover .icon,
+.file-analysis__button:focus .icon {
+  stroke: #6eaf40;
+}
+
+.file-analysis__button:active {
+  opacity: 0.8;
 }
 
 .file-analysis__button .icon {
-  transition: transform 0.5s;
+  stroke: #4A4A4A;
+  transition: transform 0.3s, stroke 0.3s;
 }
 
 .file-analysis__button.active {
@@ -234,7 +259,6 @@ export default {
   overflow: hidden;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-
   transition: height 1s, max-height 1s;
 
 }
@@ -243,7 +267,40 @@ export default {
   height: auto;
   max-height: 10000px;
   padding: 15px;
-  border: 1px solid #4A4A4A;
+  border: 1px solid #6eaf40;
   border-top: none;
+}
+
+.file-analysis__num {
+  display: inline-block;
+  margin-right: 15px;
+  width: 30px;
+  text-align: right;
+}
+
+.identical-body__list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.similar-body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.similar-body__list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.similar-body__title {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #6eaf40;
 }
 </style>
