@@ -1,7 +1,10 @@
 <template>
   <div class="stats panel__inner">
-    <div class="panel__item shadow-box">
-      <h2 class="title title--blue">File system</h2>
+    <div class="panel__item shadow-box shadow-box--green">
+      <div class="title-wrap">
+        <h2 class="title">File system</h2>
+      </div>
+
 
       <ul class="panel__list">
         <li class="panel__list-item">
@@ -26,9 +29,10 @@
         </li>
       </ul>
     </div>
-    <div class="panel__item shadow-box">
-      <h2 class="title title--green">Data store</h2>
-
+    <div class="panel__item shadow-box shadow-box--green">
+      <div class="title-wrap">
+        <h2 class="title">Data store</h2>
+      </div>
       <ul class="panel__list">
         <li class="panel__list-item">
           <span class="panel__list-caption">Containers:</span>
@@ -104,7 +108,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .panel__inner {
   display: flex;
   flex-direction: column;
@@ -117,22 +120,41 @@ export default {
   gap: 10px;
 }
 
+.panel__item {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.panel__item:before {
+  content: '';
+  width: 100%;
+  height: 85px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: var(--grey);
+  z-index: -1;
+}
+
 .panel__list-item {
   display: flex;
   gap: 10px;
 }
 
 .panel__list-caption {
-  width: 60%;
-  color: #707070;
+  width: 73%;
+  color: var(--green-400);
+  font-size: 17px;
   text-align: right;
+  text-transform: uppercase;
 }
 
 .panel__value {
+  font-size: 18px;
   color: #000000;
   font-weight: 700;
-  text-align: right;
+  text-align: left;
   flex-grow: 1;
 }
-
 </style>

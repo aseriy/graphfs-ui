@@ -122,9 +122,10 @@ export default {
 <style scoped>
 .browser__path {
   padding: 5px 15px;
-  border: 1px solid #9a9a9a;
+  border: 1px solid var(--light);
   border-radius: 4px;
   margin-bottom: 15px;
+  color: var(--light);
 }
 
 .breadcrumbs {
@@ -141,10 +142,12 @@ export default {
   display: flex;
   align-items: center;
   gap: 10px;
+  background-color: var(--grey);
   border-radius: 4px;
-  padding: 5px 8px;
-  box-shadow: 2px 2px 4px #9a9a9a,
-  -2px -2px 4px #ffffff;
+  padding: 3px 8px;
+  color: var(--green-300);
+  box-shadow: 2px 2px 3px #646464,
+    -2px -2px 3px #c9c9c9;
   transition: box-shadow 0.3s, color 0.3s;
 }
 
@@ -156,30 +159,27 @@ export default {
 .breadcrumbs__item:last-child .breadcrumbs__button {
   pointer-events: none;
   box-shadow: none;
-  color: #D05A00;
+  font-weight: 700;
   position: relative;
 }
 
-
-
-
 .breadcrumbs__item:first-child .breadcrumbs__button {
   pointer-events: all;
-  box-shadow: 2px 2px 4px #9a9a9a,
-  -2px -2px 4px #ffffff;
 }
+
 .breadcrumbs__item:first-child .breadcrumbs__button:after {
   content: '>';
   display: inline-block;
 }
 
-
-.breadcrumbs__button:hover {
-    color: #D05A00;
+.breadcrumbs__button:hover,
+.breadcrumbs__button:focus {
+  box-shadow: 4px 4px 7px #646464,
+    -4px -4px 7px #c9c9c9;
 }
 
 .breadcrumbs__button:active {
-  box-shadow: inset 2px 2px 4px #9a9a9a,
-    inset -2px -2px 4px #ffffff;
+  box-shadow: inset 2px 2px 3px #646464,
+    inset -2px -2px 3px #c9c9c9;
 }
 </style>

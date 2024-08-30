@@ -8,7 +8,7 @@
 
       <div class="space__inner">
         <div class="panel"><Stats/></div>
-        <div class="browser shadow-box"><FileBrowser/></div>
+        <div class="browser shadow-box shadow-box--green"><FileBrowser/></div>
       </div>
 
     </div>
@@ -82,6 +82,15 @@ button {
 	color: inherit;
 }
 
+:root {
+  --dark: #181818;
+  --light: #fcfcfc;
+  --green-100: #c8d7c8;
+  --green-300: #bbff9e;
+  --green-400: #007B3C;
+  --grey: #9a9a9a;
+}
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -104,25 +113,31 @@ button {
   font-family: "Sometype Mono", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #4A4A4A;
+  color: var(--dark);
   font-size: 16px;
   line-height: 1.3;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .shadow-box {
-  padding: 30px;
-  background-color: #EDEDED;
-  box-shadow: inset 2px 2px 4px #9a9a9a,
-              inset -2px -2px 4px #ffffff;
+  padding: 26px;
+  background-color: var(--light);
+
+  box-shadow: inset 2px 2px 4px var(--grey),
+              inset -2px -2px 4px #ffffff2d;
   border-radius: 10px;
+}
+
+.shadow-box--green {
+
 }
 
 .wrapper {
   padding: 45px;
   min-height: 100vh;
-  background-color: #EDEDED;
+  background-color: var(--green-100);
+
 }
 
 .space__top {
@@ -141,6 +156,20 @@ button {
 
 .browser {
   flex-grow: 1;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.browser:before {
+  content: '';
+  width: 100%;
+  height: 120px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: var(--grey);
+  z-index: -1;
 }
 
 .title {
@@ -150,6 +179,8 @@ button {
   display: flex;
   align-items: center;
   gap: 15px;
+  z-index: 1;
+  color: #fff;
 }
 .title:before {
   content: '';
@@ -158,13 +189,10 @@ button {
   display: block;
   border-radius: 50%;
   flex-shrink: 0;
-}
-.title--blue:before {
-  background: linear-gradient(90deg, rgba(29,128,221,1) 0%, rgba(23,78,130,1) 100%);
-}
-.title--green:before {
   background: linear-gradient(90deg, rgba(192,242,152,1) 0%, rgba(99,166,52,1) 100%);
+  z-index: 0;
 }
+
 
 .ruller {
   display: block;
