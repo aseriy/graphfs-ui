@@ -275,7 +275,7 @@ export default {
 .file-analysis__num {
   display: inline-block;
   margin-right: 15px;
-  width: 30px;
+  width: 42px;
   text-align: right;
   padding-right: 6px;
   border-right: 1px solid var(--grey);

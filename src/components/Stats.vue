@@ -152,7 +152,7 @@ export default {
 
 .panel__value {
   font-size: 18px;
-  color: #000000;
+  color: var(--dark);
   font-weight: 700;
   text-align: left;
   flex-grow: 1;

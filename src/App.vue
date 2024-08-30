@@ -1,9 +1,11 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" :class="{ dark: isDarkMode }">
     <h1 class="sr-only">GraphFS Application</h1>
     <div class="space">
       <div class="space__top">
         <img src="images/logo.svg" alt="GraphFS logo" class="logo" width="145" height="50">
+        <img src="images/logo-light.svg" alt="GraphFS logo" class="logo-light" width="145" height="50">
+        <button class="theme-btn" type="button" @click="toggleTheme"></button>
       </div>
 
       <div class="space__inner">
@@ -25,15 +27,25 @@ export default {
   components: {
     Stats,
     FileBrowser
-  }
+  },
+    data() {
+      return {
+        isDarkMode: false
+      };
+    },
+    methods: {
+      toggleTheme() {
+        this.isDarkMode = !this.isDarkMode;
+      }
+    }
 }
 </script>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap');
 
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap');
 html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, a, address, cite, img, ol, ul, li, fieldset, form, label, legend, article, aside, footer, header, menu, nav, section {
 	margin: 0;
 	padding: 0;
@@ -89,6 +101,13 @@ button {
   --green-300: #bbff9e;
   --green-400: #007B3C;
   --grey: #9a9a9a;
+  --grey-600: #808080;
+  --grey-800: #363636;
+}
+
+:root .wrapper.dark {
+  --green-400: #1d9255;
+  --green-300: #a6ff80;
 }
 
 .sr-only {
@@ -107,18 +126,7 @@ button {
   display: none!important;
 }
 
-#app {
-  font-family: "Cousine", monospace;
-  /* font-family: "Red Hat Mono", monospace; */
-  font-family: "Sometype Mono", monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: var(--dark);
-  font-size: 16px;
-  line-height: 1.3;
-  font-style: normal;
-  font-weight: 500;
-}
+#app {}
 
 .shadow-box {
   padding: 26px;
@@ -129,19 +137,118 @@ button {
   border-radius: 10px;
 }
 
-.shadow-box--green {
-
-}
-
 .wrapper {
+  font-family: "Red Hat Mono", monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--dark);
+  font-size: 16px;
+  line-height: 1.3;
+  font-style: normal;
+  font-weight: 400;
+
+
   padding: 45px;
   min-height: 100vh;
   background-color: var(--green-100);
+}
+
+.wrapper.dark {
+  background-color: var(--grey-600);
+  color: var(--light);
+}
+.logo-light {
+  display: none;
+}
+
+.wrapper.dark .logo {
+  display: none;
+}
+.wrapper.dark .logo-light {
+  display: block;
+}
+.wrapper.dark .theme-btn {
+  background-color: var(--grey-800);
+  box-shadow: inset 2px 2px 4px #000000,
+  inset -2px -2px 4px #616161;
+  justify-content: flex-end;
+}
+.wrapper.dark .theme-btn:before {
+  background-color: var(--green-400);
+}
+/* серые шапки */
+.wrapper.dark .browser:before, .wrapper.dark .panel__item:before {
+  background-color: var(--grey-800);
+}
+.wrapper.dark .shadow-box {
+  background-color: var(--dark);
+  box-shadow: inset 2px 2px 4px #000000,
+  inset -2px -2px 4px #4e4e4e;
+}
+.wrapper.dark .panel__value {
+  color: var(--light);
+}
+.wrapper.dark .breadcrumbs__button {
+  background-color: var(--grey-800);
+  box-shadow: 2px 2px 3px #000000,
+  -2px -2px 3px #5a5a5a;
+  font-weight: 400;
+}
+.wrapper.dark .breadcrumbs__item:last-child .breadcrumbs__button {
+  font-weight: 500;
+}
+.wrapper.dark .breadcrumbs__button:hover, .wrapper.dark .breadcrumbs__button:focus {
+  box-shadow: 4px 4px 7px #000000,
+  -4px -4px 7px #5a5a5a;
+}
+.wrapper.dark .breadcrumbs__button:active {
+  box-shadow: inset 2px 2px 3px #000000,
+  inset -2px -2px 3px #5a5a5a;
+}
+.wrapper.dark .directories__button {
+  box-shadow: 2px 2px 4px #000000,
+              -2px -2px 4px #4e4e4e;
+}
+.wrapper.dark .directories__button:active {
+  box-shadow: inset 2px 2px 4px #000000,
+              inset -2px -2px 4px #4e4e4e;
+}
+.wrapper.dark {
 
 }
 
+
+
+
+
 .space__top {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.theme-btn {
+  width: 80px;
+  height: 50px;
+  background-color: var(--green-100);
+  border-radius: 35px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 7px;
+  box-shadow: inset 2px 2px 4px #939e93,
+              inset -2px -2px 4px #e4f5e4;
+}
+
+.theme-btn:before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 36px;
+  background-color: var(--light);
+  border-radius: 50%;
 }
 
 .space__inner {

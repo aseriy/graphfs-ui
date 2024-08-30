@@ -47,6 +47,8 @@ export default {
 .directories__total {
   display: block;
   margin-bottom: 15px;
+  color: var(--green-400);
+  text-transform: uppercase;
 }
 
 .directories__inner {
@@ -56,8 +58,24 @@ export default {
 
 .directories__header {
   display: flex;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 10px;
+  color: var(--light);
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+}
+
+.directories__header:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  background-color: var(--grey);
+  width: calc(100% + 15px);
+  height: calc(100% + 19px);
+  left: -10px;
+  top: -10px;
+
 }
 
 .directories__body {
@@ -94,12 +112,12 @@ export default {
   border-radius: 4px;
   padding: 2px 8px;
   box-shadow: 2px 2px 4px #9a9a9a,
-  -2px -2px 4px #ffffff;
+    -2px -2px 4px #ffffff;
   transition: box-shadow 0.3s, color 0.3s;
 }
 
-.directories__button:hover {
-    color: #D05A00;
+.directories__button:hover, .directories__button:focus {
+  color: #D05A00;
 }
 
 .directories__button:active {
