@@ -10,16 +10,16 @@
     <div class="breadcrumbs">
       <ul class="breadcrumbs__list">
 
-        <!-- icon for root -->
-        <li>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M6 2C4.897 2 4 2.897 4 4V20C4 21.103 4.897 22 6 22H18C19.103 22 20 21.103 20 20V4C20 2.897 19.103 2 18 2H6ZM6 17V5H18L18.002 17H6Z" fill="black" />
-            </svg>
-        </li>
-
         <li class="breadcrumbs__item" v-for="(dir, key) in data.pathLinks" :key='key'>
           <button type="button" class="breadcrumbs__button" @click="updatePath(pathDelinkify(key))">
-            {{ dir }}
+            <div v-if="!key">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 2C4.897 2 4 2.897 4 4V20C4 21.103 4.897 22 6 22H18C19.103 22 20 21.103 20 20V4C20 2.897 19.103 2 18 2H6ZM6 17V5H18L18.002 17H6Z" fill="black" />
+              </svg>
+            </div>
+            <div v-else>
+              {{ dir }}
+            </div>
           </button>
         </li>
 
