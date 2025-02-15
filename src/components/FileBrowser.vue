@@ -13,9 +13,13 @@
         <li class="breadcrumbs__item" v-for="(dir, key) in data.pathLinks" :key='key'>
           <button type="button" class="breadcrumbs__button" @click="updatePath(pathDelinkify(key))">
             <div v-if="!key">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 2C4.897 2 4 2.897 4 4V20C4 21.103 4.897 22 6 22H18C19.103 22 20 21.103 20 20V4C20 2.897 19.103 2 18 2H6ZM6 17V5H18L18.002 17H6Z" fill="black" />
+
+
+              <svg class="icon icon-home" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 10.5256L10.4993 3.49031C11.382 2.83656 12.618 2.83656 13.5007 3.49031L23 10.5256M4.66667 8.19795V18.6724C4.66667 19.9579 5.76108 21 7.11111 21H16.8889C18.2389 21 19.3333 19.9579 19.3333 18.6724V8.19795" stroke-width="2" stroke-linecap="round"/>
               </svg>
+
+
             </div>
             <div v-else>
               {{ dir }}
@@ -132,11 +136,12 @@ export default {
 <style scoped>
 .browser__path {
   padding: 5px 15px;
-  border: 1px solid var(--light);
+  border: 1px solid var(--border-grey);
   border-radius: 4px;
   margin-bottom: 15px;
   color: var(--light);
 }
+
 
 .breadcrumbs {
   margin-bottom: 60px;
@@ -145,6 +150,7 @@ export default {
 .breadcrumbs__list {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 15px;
 }
 
@@ -155,10 +161,14 @@ export default {
   background-color: var(--grey);
   border-radius: 4px;
   padding: 3px 8px;
-  color: var(--green-300);
-  box-shadow: 2px 2px 3px #646464,
-    -2px -2px 3px #c9c9c9;
-  transition: box-shadow 0.3s, color 0.3s;
+  color: var(--green-300-static);
+  border: 1px solid var(--border-grey);
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.icon-home {
+  stroke: var(--green-300-static);
+  fill: transparent;
 }
 
 .breadcrumbs__item:not(:last-child) .breadcrumbs__button:after {
@@ -169,7 +179,7 @@ export default {
 .breadcrumbs__item:last-child .breadcrumbs__button {
   pointer-events: none;
   box-shadow: none;
-  font-weight: 700;
+  font-weight: 500;
   position: relative;
 }
 
@@ -184,8 +194,7 @@ export default {
 
 .breadcrumbs__button:hover,
 .breadcrumbs__button:focus {
-  box-shadow: 4px 4px 7px #646464,
-    -4px -4px 7px #c9c9c9;
+  border-color: var(--green-300-static);
 }
 
 .breadcrumbs__button:active {

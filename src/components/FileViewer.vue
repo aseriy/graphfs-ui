@@ -203,7 +203,7 @@ export default {
 }
 
 .file-info__label {
-  font-weight: 700;
+  font-weight: 600;
   display: inline-block;
   margin-right: 5px;
 }
@@ -221,18 +221,18 @@ export default {
   padding: 15px;
   width: 100%;
   border-radius: 8px;
-  border: 2px solid var(--grey);
-  transition: border-color 0.3s, opacity 0.3s;
+  border: 2px solid var(--border-grey);
+  transition: color 0.3s, opacity 0.3s;
 }
 
 .file-analysis__button:hover,
 .file-analysis__button:focus {
-  border-color: var(--green-400);
+  color: var(--green-300);
 }
 
 .file-analysis__button:hover .icon,
 .file-analysis__button:focus .icon {
-  stroke: var(--green-400);
+  stroke: var(--green-300);
 }
 
 .file-analysis__button:active {
@@ -247,7 +247,6 @@ export default {
 .file-analysis__button.active {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-color: var(--green-400);
   border-bottom: none;
 }
 
@@ -268,7 +267,7 @@ export default {
   height: auto;
   max-height: 10000px;
   padding: 15px;
-  border: 2px solid var(--green-400);
+  border: 2px solid var(--border-grey);
   border-top: none;
 }
 
@@ -284,7 +283,7 @@ export default {
 .identical-body__list {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 9px;
 }
 
 .similar-body {
@@ -304,14 +303,14 @@ export default {
   margin-bottom: 10px;
   font-size: 16px;
   font-weight: 700;
-  color: var(--green-300);
+  color: var(--green-400);
   position: relative;
   z-index: 1;
 }
 .similar-body__title:before {
   content: '';
   position: absolute;
-  background-color: var(--grey);
+  background-color: var(--grey-800);
   width: calc(100% + 30px);
   height: calc(100% + 10px);
   left: -15px;

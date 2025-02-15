@@ -95,19 +95,22 @@ button {
 }
 
 :root {
-  --dark: #181818;
+  --dark: #252525;
   --light: #fcfcfc;
   --green-100: #c8d7c8;
-  --green-300: #bbff9e;
+  --green-300: #7fb368;
   --green-400: #007B3C;
-  --grey: #9a9a9a;
+  --border-grey: #9f9f9f4b;
+  --grey: #6f6f6f;
   --grey-600: #808080;
   --grey-800: #363636;
+
+  --green-300-static: #9adb7e;
 }
 
 :root .wrapper.dark {
   --green-400: #1d9255;
-  --green-300: #a6ff80;
+  --green-300: #9adb7e;
 }
 
 .sr-only {
@@ -132,8 +135,8 @@ button {
   padding: 26px;
   background-color: var(--light);
 
-  box-shadow: inset 2px 2px 4px var(--grey),
-              inset -2px -2px 4px #ffffff2d;
+  /* box-shadow: inset 2px 2px 4px var(--grey),
+              inset -2px -2px 4px #ffffff2d; */
   border-radius: 10px;
 }
 
@@ -174,7 +177,7 @@ button {
   justify-content: flex-end;
 }
 .wrapper.dark .theme-btn:before {
-  background-color: var(--green-400);
+  background-color: var(--green-100);
 }
 /* серые шапки */
 .wrapper.dark .browser:before, .wrapper.dark .panel__item:before {
@@ -182,22 +185,22 @@ button {
 }
 .wrapper.dark .shadow-box {
   background-color: var(--dark);
-  box-shadow: inset 2px 2px 4px #000000,
-  inset -2px -2px 4px #4e4e4e;
+  /* box-shadow: inset 2px 2px 4px #000000,
+  inset -2px -2px 4px #4e4e4e; */
 }
 .wrapper.dark .panel__value {
   color: var(--light);
 }
 .wrapper.dark .breadcrumbs__button {
   background-color: var(--grey-800);
-  box-shadow: 2px 2px 3px #000000,
-  -2px -2px 3px #5a5a5a;
+  /* box-shadow: 2px 2px 3px #000000,
+  -2px -2px 3px #5a5a5a; */
   font-weight: 400;
 }
 .wrapper.dark .breadcrumbs__item:last-child .breadcrumbs__button {
   font-weight: 500;
 }
-.wrapper.dark .breadcrumbs__button:hover, .wrapper.dark .breadcrumbs__button:focus {
+/* .wrapper.dark .breadcrumbs__button:hover, .wrapper.dark .breadcrumbs__button:focus {
   box-shadow: 4px 4px 7px #000000,
   -4px -4px 7px #5a5a5a;
 }
@@ -212,7 +215,7 @@ button {
 .wrapper.dark .directories__button:active {
   box-shadow: inset 2px 2px 4px #000000,
               inset -2px -2px 4px #4e4e4e;
-}
+} */
 .wrapper.dark {
 
 }
