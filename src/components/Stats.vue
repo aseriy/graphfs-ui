@@ -146,6 +146,7 @@ export default {
   width: 73%;
   color: var(--green-400);
   font-size: 17px;
+  font-weight: 500;
   text-align: right;
   text-transform: uppercase;
 }
@@ -153,7 +154,7 @@ export default {
 .panel__value {
   font-size: 18px;
   color: var(--dark);
-  font-weight: 700;
+  font-weight: 600;
   text-align: left;
   flex-grow: 1;
 }
