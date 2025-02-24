@@ -100,13 +100,13 @@ export default {
     },
 
     async getIdenticalFiles(path) {
-      const res = await fetch('/apis/identical' + path)
+      const res = await fetch('http://localhost:9000/apis/identical' + path)
       const data = await res.json()
       return data
     },
 
     async getSimilarFiles(path) {
-      const res = await fetch('/apis/similar' + path)
+      const res = await fetch('http://localhost:9000/apis/similar' + path)
       const groups = await res.json()
 
       var size = 0

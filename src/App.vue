@@ -3,8 +3,8 @@
     <h1 class="sr-only">GraphFS Application</h1>
     <div class="space">
       <div class="space__top">
-        <img src="images/logo.svg" alt="GraphFS logo" class="logo" width="145" height="50">
-        <img src="images/logo-light.svg" alt="GraphFS logo" class="logo-light" width="145" height="50">
+        <img src="/images/logo.svg" alt="GraphFS logo" class="logo" width="145" height="50">
+        <img src="/images/logo-light.svg" alt="GraphFS logo" class="logo-light" width="145" height="50">
         <button class="theme-btn" type="button" @click="toggleTheme"></button>
       </div>
 

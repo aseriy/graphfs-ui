@@ -15,15 +15,15 @@
             <div v-if="!key">
 
 
-              <svg class="icon icon-home" width="24" height="24">
-                <use href="images/sprite.svg#icon-home"></use>
-              </svg>
+              <!-- <svg class="icon icon-home" width="24" height="24">
+                <use href="/images/sprite.svg#icon-home"></use>
+              </svg> -->
 
 
-              <!-- <svg class="icon icon-home" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg class="icon icon-home" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 10.5256L10.4993 3.49031C11.382 2.83656 12.618 2.83656 13.5007 3.49031L23 10.5256M4.66667 8.19795V18.6724C4.66667 19.9579 5.76108 21 7.11111 21H16.8889C18.2389 21 19.3333 19.9579 19.3333 18.6724V8.19795" stroke-width="2" stroke-linecap="round"/>
               </svg>
-              -->
+             
 
             </div>
             <div v-else>
@@ -78,7 +78,7 @@ export default {
   methods: {
 
     async getPath(path = null) {
-      var uri = '/apis/filestore'
+      var uri = 'http://localhost:9000/apis/filestore'
       if (path) {
         uri += path
       }
@@ -89,9 +89,14 @@ export default {
 
     async updatePath(path) {
       if (this.data.path !== 'undefined' && this.data.path !== path) {
-        if (path === '/') {
+        if (path.startsWith('//'))
+          path = path.substring(1)
+
+        else if (path === '/') {
           path = null
         }
+
+        
         this.data = await this.getPath(path)
         this.data.pathLinks = this.pathLinkify(this.data.path)
         console.log("FileBrowser / updatePath(): ", this.data)
@@ -99,7 +104,7 @@ export default {
       }
     },
 
-    pathLinkify(path) {
+    pathLinkify(path) {      
       var pathLinks = ['ROOT']
 
       if (path != '/') {
@@ -114,11 +119,14 @@ export default {
     pathDelinkify(idx) {
       var path = '/'
 
+      console.log(idx)
       if (idx > 0) {
         var pathLinks = this.data.pathLinks.slice(0)
+        console.log(pathLinks)
         pathLinks[0] = ''
         pathLinks.splice(idx + 1)
         path = pathLinks.join('/')
+        console.log(path)
       }
 
       return path
