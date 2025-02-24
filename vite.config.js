@@ -1,8 +1,17 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import svgr from "vite-plugin-svgr";
+import svgSprite from 'vite-plugin-svg-sprite';
 
 module.exports = defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    svgr(),
+    svgSprite({
+      symbolId: 'icon-[name]', // Generates IDs like "icon-home"
+      include: 'images/*.svg', // Where your SVGs are stored
+    })
+  ],
   resolve: {
     alias: {
       '@': '/src',
@@ -14,26 +23,12 @@ module.exports = defineConfig({
     strictPort: true,  // Ensures Vite doesn't switch ports automatically
     open: false,  // Opens the browser on start
     proxy: {
-      "/^apis/": {
+      "^/apis/": {
         target: 'http://127.0.0.1:9000',
         changeOrigin: true,
-        secure: false,
-        headers: {
-          "Cache-Control": "no-cache, no-store, must-revalidate",
-          Pragma: "no-cache",
-          Expires: "0"
-        }
+        secure: false
       }
     }
   }
-
-  // devServer: {
-  //   proxy: {
-  //     '^/apis/': {
-  //       target: 'http://127.0.0.1:9000',
-  //       changeOrigin: true
-  //     }
-  //   }
-  // },
 
 });

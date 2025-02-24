@@ -92,7 +92,7 @@ export default {
   methods: {
 
     async getStats() {
-      const res = await fetch('http://localhost:9000/apis/stats')
+      const res = await fetch('/apis/stats')
       const data = await res.json()
       console.log(data)
       return data

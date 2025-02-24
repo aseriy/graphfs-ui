@@ -78,7 +78,7 @@ export default {
   methods: {
 
     async getPath(path = null) {
-      var uri = 'http://localhost:9000/apis/filestore'
+      var uri = '/apis/filestore'
       if (path) {
         uri += path
       }
