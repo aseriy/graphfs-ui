@@ -21,7 +21,7 @@
         </li>
         <li class="panel__list-item">
           <span class="panel__list-caption">Size:</span>
-          <span class="panel__value">{{ stats.fs?.size }}</span>
+          <span class="panel__value">{{ formatSize(stats.fs?.size) }}</span>
         </li>
         <li class="panel__list-item">
           <span class="panel__list-caption">Redundancy:</span>
@@ -96,6 +96,18 @@ export default {
       const data = await res.json()
       console.log(data)
       return data
+    },
+
+    formatSize(bytes) {
+      if (!bytes || isNaN(bytes)) return "N/A"; // Handle undefined/null cases
+
+      const sizes = ["", "k", "M", "G", "T"];
+      let i = 0;
+      while (bytes >= 1024 && i < sizes.length - 1) {
+        bytes /= 1024;
+        i++;
+      }
+      return `${bytes.toFixed(2)}${sizes[i]}`;
     }
 
   },
